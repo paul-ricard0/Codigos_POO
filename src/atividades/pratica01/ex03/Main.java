@@ -1,4 +1,4 @@
-package atividades.pratica01.ativ03;
+package atividades.pratica01.ex03;
 
 public class Main {
 

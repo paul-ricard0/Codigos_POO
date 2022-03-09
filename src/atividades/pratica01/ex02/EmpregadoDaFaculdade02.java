@@ -1,4 +1,4 @@
-package atividades.pratica01.ativ02;
+package atividades.pratica01.ex02;
 
 /*
  * a) Alterar o método getGastos() para somar um bônus de R$ 40 reais por hora/aula.

@@ -1,4 +1,4 @@
-package atividades.pratica01.ativ03;
+package atividades.pratica01.ex03;
 
 /*
  * Criar uma classe Aluno que possui os atributos: nome, matricula, notaAV1, notaAV2,

@@ -1,4 +1,4 @@
-package atividades.pratica01.ativ01;
+package atividades.pratica01.ex01;
 
 /*
  * Uma concessionária que compra e vende veículos seminovos necessita criar um novo

@@ -1,4 +1,4 @@
-package atividades.pratica01.ativ01;
+package atividades.pratica01.ex01;
 
 public class Transacao {
 

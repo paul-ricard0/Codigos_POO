@@ -1,4 +1,4 @@
-package atividades.pratica01.ativ02;
+package atividades.pratica01.ex02;
 
 public class  EmpregadoDaFaculdade{
 	private String nome;
