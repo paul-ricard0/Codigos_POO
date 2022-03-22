@@ -2,34 +2,20 @@ package atividades.pratica02.ex02;
 
 public class Redimentos {
 	
-	private double invI;
+	private double invInicial;
 	private double txRendimento;
 	private double numMes;
 	
-	public Redimentos(double invI, double txRendimento, double numMes) {
-		this.invI = invI;
-		this.txRendimento = txRendimento/100;
+	public Redimentos(double invInicial, double txRendimento, double numMes) {
+		this.invInicial = invInicial;
+		this.txRendimento = txRendimento;
 		this.numMes = numMes;
 	}
 	
-	
-	
-	public double rendimento() {
-		double invf = this.invI;
-		double adendo= 0;
-		
-		for(int i=0; this.numMes != i; i++) {
-						
-			adendo = invf * txRendimento;
-			invf = invf + adendo;
-			System.out.printf("%,.2f",invf);
-			System.out.println();
-		}
-		
-		return invf;
+	public String rendimentoTotal() {
+		double xx = this.invInicial * (this.txRendimento * this.numMes);
+		return "Rendimento total: " + xx;
 	}
 	
-	
-
 	
 }
