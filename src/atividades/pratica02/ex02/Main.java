@@ -12,14 +12,15 @@ public class Main {
 		Double inicial = scan.nextDouble();
 		
 		System.out.println("taxa de rendimento: ");
-		Double mes = scan.nextDouble();
+		Double taxa = scan.nextDouble();
+		
 		
 		System.out.println("Número de mês: ");
-		Double taxa = scan.nextDouble();
+		Double mes = scan.nextDouble();
 		
 		Redimentos investimento = new Redimentos(inicial, taxa, mes);
 		
-		System.out.println(investimento.rendimentoTotal());
+		System.out.println("Rendimento toal: "+	investimento.rendimento());
 		
 
 	}
