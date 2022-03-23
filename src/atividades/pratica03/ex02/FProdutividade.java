@@ -12,6 +12,25 @@ public class FProdutividade extends Funcionario {
 	}
 	
 	public double calcularProventos() {
-		return 2;
+		return getSalario() + (this.valor * this.producao);
 	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	public int getProducao() {
+		return producao;
+	}
+
+	public void setProducao(int producao) {
+		this.producao = producao;
+	}
+	
+	
+	
 }

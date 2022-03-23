@@ -7,7 +7,7 @@ public class FPadrao extends Funcionario {
 	}
 	
 	public double calcularProventos() {
-		return 2;
+		return getSalario();
 	}
 	
 	

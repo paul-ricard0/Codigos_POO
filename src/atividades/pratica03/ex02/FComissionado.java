@@ -3,17 +3,34 @@ package atividades.pratica03.ex02;
 public class FComissionado extends Funcionario{
 	
 	private double percentual;
-	private double vendas;
+	private double qtdVendas;
 	
-	FComissionado(int matricula, String nome, double salario, double percentual, double vendas){
+	FComissionado(int matricula, String nome, double salario, double percentual, double qtdVendas){
 		super(matricula, nome, salario);
-		this.percentual = percentual;
-		this.vendas = vendas;
+		this.percentual = percentual/100;
+		this.qtdVendas = qtdVendas;
 	}
 	
 	public double calcularProventos() {
-		return 2;
+		return getSalario() + (this.percentual * this.qtdVendas);
 	}
 	
-	falta set e get
+	public double getPercenual() {
+		return this.percentual;
+	}
+	
+	public void setPercenual(double percentual) {
+		this.percentual = percentual;
+	}
+	
+	public double getVendas() {
+		return this.qtdVendas;
+	}
+	
+	public void setVendas(double qtdVendas) {
+		this.qtdVendas = qtdVendas;
+	}
+	
+	
+	
 }
