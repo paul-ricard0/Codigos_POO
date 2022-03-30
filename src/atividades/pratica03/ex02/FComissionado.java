@@ -23,17 +23,5 @@ public class FComissionado extends Funcionario{
 		this.percentual = percentual;
 	}
 	
-<<<<<<< Updated upstream
-	public double getVendas() {
-		return this.qtdVendas;
-	}
-	
-	public void setVendas(double qtdVendas) {
-		this.qtdVendas = qtdVendas;
-	}
-	
-	
-=======
->>>>>>> Stashed changes
-	
 }
+
