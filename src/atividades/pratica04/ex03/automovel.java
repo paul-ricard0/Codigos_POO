@@ -1,97 +1,72 @@
 package atividades.pratica04.ex03;
 
 public class automovel {
-	private String abs;
-	private String airBag;
-	private String alarme;
-	private String som;
-	private String conjuntoEletico;
-	private String computadorBordo;
+	private boolean abs;
+	private boolean airBag;
+	private boolean alarme;
+	private boolean som;
+	private boolean conjuntoEletico;
+	private boolean computadorBordo;
 	private double precoBase;
 	private double precoFinal;
 	
-	automovel(double precobase, String abs, String airBag, String alarme, String som, String conjuntoElerico, String computadorBordo){
+	automovel(double precobase, boolean abs, boolean airBag, boolean alarme, boolean som, boolean conjuntoElerico, boolean computadorBordo){
 		setAbs(abs);
 		setAirBag(airBag);
 		setAlarme(alarme);
 		setSom(som);
 		setConjuntoEletico(conjuntoElerico);
 		setComputadorBordo(computadorBordo);
-		this.precoBase = precoBase;
-	}
-	
-	
-	
-	public double getprecoFinal() {
-		return precoFinal;
+		this.precoBase = precobase;
 	}
 
-	
-	public String getAbs() {
+	public boolean isAbs() {
 		return abs;
 	}
 
-	public void setAbs(String abs) {
-		if(abs != null) {
-			this.abs = abs;
-			this.precoFinal += this.precoBase * 0.15;
-		}
+	public void setAbs(boolean abs) {
+		this.abs = abs;
 		
 	}
 
-	public String getAirBag() {
+	public boolean isAirBag() {
 		return airBag;
 	}
 
-	public void setAirBag(String airBag) {
-		if(airBag != null) {
-			this.airBag = airBag;
-			this.precoFinal += this.precoBase * 0.1;
-		}
+	public void setAirBag(boolean airBag) {
+		this.airBag = airBag;
 	}
 
-	public String getAlarme() {
+	public boolean isAlarme() {
 		return alarme;
 	}
 
-	public void setAlarme(String alarme) {
-		if(alarme != null) {
-			this.alarme = alarme;
-			this.precoFinal += this.precoBase * 0.03;
-		}
+	public void setAlarme(boolean alarme) {
+		this.alarme = alarme;
 	}
 
-	public String getSom() {
+	public boolean isSom() {
 		return som;
 	}
 
-	public void setSom(String som) {
-		if(som != null) {
-			this.som = som;	
-			this.precoFinal += this.precoBase * 0.02;
-		}
+	public void setSom(boolean som) {
+		this.som = som;
 	}
 
-	public String getConjuntoEletico() {
+	public boolean isConjuntoEletico() {
 		return conjuntoEletico;
 	}
 
-	public void setConjuntoEletico(String conjuntoEletrico) {
-		if(conjuntoEletrico != null) {
-			this.conjuntoEletico = conjuntoEletico;	
-			this.precoFinal += this.precoBase * 0.05;
-		}
+	public void setConjuntoEletico(boolean conjuntoEletico) {
+		this.conjuntoEletico = conjuntoEletico;
 	}
 
-	public String getComputadorBordo() {
+	public boolean isComputadorBordo() {
 		return computadorBordo;
 	}
 
-	public void setComputadorBordo(String computadorBordo) {
-		if(computadorBordo!= null) {
-			this.computadorBordo = computadorBordo;
-			this.precoFinal += this.precoBase * 0.1;
-		}
+	public void setComputadorBordo(boolean computadorBordo) {
+		this.computadorBordo = computadorBordo;
 	}
 
 	public double getPrecoBase() {
@@ -101,6 +76,95 @@ public class automovel {
 	public void setPrecoBase(double precoBase) {
 		this.precoBase = precoBase;
 	}
+
+	public double getPrecoFinal() {
+		return precoFinal;
+	}
+
+	public void setPrecoFinal(double precoFinal) {
+		this.precoFinal = precoFinal;
+	}
 	
+	
+//	public double getprecoFinal() {
+//		return precoFinal;
+//	}
+//
+//	
+//	public boolean getAbs() {
+//		return abs;
+//	}
+//
+//	public void setAbs(boolean abs) {
+//		if(abs) {
+//			this.abs = abs;
+//			this.precoFinal += this.precoBase * 0.15;
+//		}
+//		
+//	}
+//
+//	public boolean getAirBag() {
+//		return airBag;
+//	}
+//
+//	public void setAirBag(boolean airBag) {
+//		if(airBag ){
+//			this.airBag = airBag;
+//			this.precoFinal += this.precoBase * 0.1;
+//		}
+//	}
+//
+//	public boolean getAlarme() {
+//		return alarme;
+//	}
+//
+//	public void setAlarme(boolean alarme) {
+//		if(alarme) {
+//			this.alarme = alarme;
+//			this.precoFinal += this.precoBase * 0.03;
+//		}
+//	}
+//
+//	public boolean getSom() {
+//		return som;
+//	}
+//
+//	public void setSom(boolean som) {
+//		if(som) {
+//			this.som = som;	
+//			this.precoFinal += this.precoBase * 0.02;
+//		}
+//	}
+//
+//	public boolean getConjuntoEletico() {
+//		return conjuntoEletico;
+//	}
+//
+//	public void setConjuntoEletico(boolean conjuntoEletrico) {
+//		if(conjuntoEletrico) {
+//			this.conjuntoEletico = conjuntoEletrico;	
+//			this.precoFinal += this.precoBase * 0.05;
+//		}
+//	}
+//
+//	public boolean getComputadorBordo() {
+//		return computadorBordo;
+//	}
+//
+//	public void setComputadorBordo(boolean computadorBordo) {
+//		if(computadorBordo) {
+//			this.computadorBordo = computadorBordo;
+//			this.precoFinal += this.precoBase * 0.1;
+//		}
+//	}
+//
+//	public double getPrecoBase() {
+//		return precoBase;
+//	}
+//
+//	public void setPrecoBase(double precoBase) {
+//		this.precoBase = precoBase;
+//	}
+//	
 
 }
