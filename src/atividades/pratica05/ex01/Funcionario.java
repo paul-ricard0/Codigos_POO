@@ -7,33 +7,33 @@ public class Funcionario {
 	private double salario;
 	private String dataEntrada;
 	private String RG;
-	private boolean p;
+	private boolean contratado;
 	
-	public Funcionario(String nome, String departamento, double salario, String dataEntrada, String rG, boolean p) {
+	public Funcionario(String nome, String departamento, double salario, String dataEntrada, String rG) {
 		this.nome = nome;
 		this.departamento = departamento;
 		this.salario = salario;
 		this.dataEntrada = dataEntrada;
-		RG = rG;
-		this.p = p;
+		this.RG = rG;
+		this.contratado = false;
 	}
-	
 
 	public Funcionario(String nome, String departamento, double salario, String rG) {
 		this.nome = nome;
 		this.departamento = departamento;
 		this.salario = salario;
 		this.RG = rG;
-		this.p = true;
+		this.contratado = false;
 	}
 
 	public Funcionario(String nome, String rG) {
 		this.nome = nome;
 		this.RG = rG;
+		this.contratado = false;
 	}
 
-	public Funcionario() {
-		
+	public Funcionario(){
+		this.contratado = false;
 	}
 
 
@@ -41,12 +41,12 @@ public class Funcionario {
 		this.salario += bonus;
 	}
 	
-	public void demitir() {
-		this.p = false;
+	public void setContratado(boolean c) {
+		this.contratado = c;
 	}
 	
 	public String mostrarDados() {
-		return this.nome +" "+ this.departamento +" "+  this.salario +" "+ this.dataEntrada +" "+ this.RG +" "+ this.p;
+		return this.nome +" "+ this.departamento +" "+  this.salario +" "+ this.dataEntrada +" "+ this.RG +" "+ this.contratado;
 	}
 	
 	
