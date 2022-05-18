@@ -18,7 +18,7 @@ public class Ex04 {
 		horas = segundos / 3600;
 		resto = segundos % 3600;
 		minutos = resto / 60;
-		resto = resto %60;
+		resto = resto % 60;
 		
 		System.out.println("Digite os segundos");
 
