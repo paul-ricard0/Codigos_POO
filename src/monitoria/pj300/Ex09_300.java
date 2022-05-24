@@ -1,10 +1,10 @@
-package monitoria.ex04;
+package monitoria.pj300;
 
 public class Ex09_300 {
 
 	public static void main(String[] args) {
 		
-		int dia, mes, ano;
+		int dia, mes;
 		
 		
 		dia = 31;

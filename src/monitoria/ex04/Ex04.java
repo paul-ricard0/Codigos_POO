@@ -3,8 +3,6 @@ package monitoria.ex04;
 
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
 public class Ex04 {
 
 	public static void main(String[] args) {
