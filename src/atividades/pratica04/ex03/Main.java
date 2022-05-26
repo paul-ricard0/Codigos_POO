@@ -2,7 +2,21 @@ package atividades.pratica04.ex03;
 
 import javax.swing.JOptionPane;
 
+/*	Criar uma classe com o nome automóvel com os atributos lógicos: abs, airBag, alarme, 
+	som, conjunto elétrico e computador de bordo. Também, deverá ser criado o atributo 
+	preço base do automóvel sem estes opcionais. Baseado nisto, a classe receberá os 
+	seguintes métodos: 
+	a) construtor: receber os atributos definidos;
+	b) métodos set e get: para todos os atributos inseridos;
+	c) método calcularPrecoFinal: informa o preço do carro baseado nas seguintes regras:
 
+	Criar uma classe chamada popular que herda automóvel, a qual receberá como 
+	parâmetro um percentual de desconto. Criar um método calcularPrecoFinalPopular que 
+	vai ser responsável por imprimir o preço final com o desconto.
+	Main: criar uma entrada para no máximo 100 automóveis. Solicitar ao usuário a escolha:
+	<1> Cadastro Carro Popular
+	<2> Calcular Preço
+	<3> Sair*/
 
 public class Main {
 
