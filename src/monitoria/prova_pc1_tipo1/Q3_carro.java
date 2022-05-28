@@ -2,6 +2,16 @@ package monitoria.prova_pc1_tipo1;
 
 import java.util.Scanner;
 
+/*
+ * Escreva um algoritmo que leia a placa de um carro com no
+ * máximo 7 caracteres e o ano de fabricação. Em seguida, validar a situação do carro:
+ * Se o ano estiver entre 2004 e 2014 imprimir: Carro Velho
+ * Se o ano estiver entre 2014 e 2021 imprimir: Carro Semi-novo
+ * Se o ano for igual ou superior a 2022 imprimir: Carro Novo
+ * Outros casos imprimir: Carro muito Velho
+ * Posteriormente, o programa deverá substituir as vogais (a, e, i o e u – maiúscula e
+ * minúscula) da placa pelo caractere *, e em seguida imprimir a placa.
+ */
 public class Q3_carro {
 
 	public static void main(String[] args) {
@@ -14,10 +24,11 @@ public class Q3_carro {
 		System.out.println("Qual ano do carro? ");
 		ano = scan.nextInt();
 		
-		scan = new Scanner(System.in);
+		
 		do {
 			System.out.println("Qual a placa do carro? ");
 			placa = scan.nextLine();
+			scan.close();
 			
 			if(placa.length()<=7) {
 				

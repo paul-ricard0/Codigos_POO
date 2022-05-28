@@ -2,12 +2,30 @@ package monitoria.prova_pc2_tipo2;
 
 import java.util.Scanner;
 
+/*
+ * Calcular o valor do imposto e seguro de um determinado produto, de acordo com a
+ * carga (perigosa - S ou N) e o meio de transporte utilizado (T-Terrestre, F-Fluvial, A-Aéreo).
+ * O programa deverá solicitar o preço do produto, tipo de carga e meio de transporte.
+ * Siga as instruções abaixo:
+ * O programa deverá garantir que o preço do produto seja maior do que zero para iniciar a
+ * solicitação do tipo de transporte e sobre carga (perigosa - S ou N).
+ * Se a carga for perigosa (S) e a origem for A-Aéreo deverá mostrar o imposto de 24% e o seguro
+ * referente a metade do preço.
+ * Se a carga for perigosa (N) e a origem for A-Aéreo deverá mostrar o imposto de 14% e o seguro
+ * referente a um terço do preço.
+ * Se a origem for T-Terrestre ou F-Fluvial deverá mostrar o imposto de 4% e o seguro referente
+ * 10% do preço.
+ * Todos os demais casos, o imposto será de 5% e o seguro de 5%.
+ */
+
 public class Q3_transporte {
 
 	public static void main(String[] args) {
 		
-		Scanner scan = new Scanner(System.in);
 		double valor;
+		String tipoCarga, meio;
+		
+		Scanner scan = new Scanner(System.in);
 		
 		do{
 			System.out.print("Valor ? ");
@@ -16,10 +34,10 @@ public class Q3_transporte {
 			if (valor > 0){
 				scan = new Scanner(System.in);
 				System.out.print("\nperigosa - S ou N? ");
-				String tipoCarga = scan.nextLine();
+				tipoCarga = scan.nextLine();
 
 				System.out.print("\nT-Terrestre, F-Fluvial, A-Aéreo? ");
-				String meio = scan.nextLine();
+				meio = scan.nextLine();
 				scan.close();
 				
 				switch (tipoCarga.toUpperCase()){

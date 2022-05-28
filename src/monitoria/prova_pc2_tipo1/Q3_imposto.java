@@ -2,6 +2,16 @@ package monitoria.prova_pc2_tipo1;
 
 import java.util.Scanner;
 
+/*
+ * Escreva um programa em Java que calcule o valor do Imposto de Renda Mensal para
+ * os contribuintes Pessoa Física e Pessoa Jurídica. Seguir as regras abaixo: (10 pontos)
+ * • O programa deverá solicitar os seguintes dados: Nome, Renda Bruta e tipo de
+ * contribuinte (1- Pessoa Física e 2- Jurídica ).
+ * • O cálculo do IR mensal para a Pessoa Jurídica é 10% sobre o valor da Renda Bruta.
+ * • O cálculo do IR mensal para a Pessoa Física é dado pela seguinte tabela:
+ * Ao final deverá mostrar o valor a ser pago (IR Mensal) para cada tipo de contribuinte.
+*/
+
 public class Q3_imposto {
 	
 	public static void main(String[] args) {
@@ -14,9 +24,9 @@ public class Q3_imposto {
 		System.out.print("\nPessoa Física[1] Pessoa Jurídica[2}: ");
 		int tipo = scan.nextInt();
 		
-		
 		System.out.print("\nRenda: ");
 		double renda = scan.nextFloat();
+		scan.close();
 		
 		switch (tipo) {
 			case 1: {

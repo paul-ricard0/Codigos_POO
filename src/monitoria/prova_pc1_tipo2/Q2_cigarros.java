@@ -2,6 +2,12 @@ package monitoria.prova_pc1_tipo2;
 
 import java.util.Scanner;
 
+/*
+ * Escreva um algoritmo que calcule a quantidade de dinheiro
+ * gasto por um fumante ao longo de sua vida. O programa deverá solicitar o número de
+ * anos que a pessoa fuma, o número de cigarros fumados por dia e o preço de uma
+ * carteira de cigarros. Ao final mostrar o valor gasto.
+ */
 public class Q2_cigarros {
 
 	public static void main(String[] args) {
