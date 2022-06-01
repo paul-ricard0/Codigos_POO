@@ -1,4 +1,4 @@
-package monitoria.prova_pc1_tipo1;
+package monitoria.prova.pc1.tipo1;
 
 
 /*

@@ -1,4 +1,4 @@
-package monitoria.prova_pc1_tipo2;
+package monitoria.prova.pc1.tipo2;
 
 /*
  * Escreva um algoritmo que imprime os números pares de 1

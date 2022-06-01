@@ -17,43 +17,44 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
-//		int key=0;
-//		do {
-//			
-//			try {
-//				
-//				key = Integer.parseInt(JOptionPane.showInputDialog(null, 
-//						"<1> Definir caminho e nome de Arquivo TXT para gravação\r\n"
-//						+ "<2> Cadastrar Projeto\r\n"
-//						+ "<3> Abrir Arquivo do Projeto\r\n"
-//						+ "<4> Sair"));
-//				
-//				switch (key) {
-//					case 1: {
-//						
-//						break;
-//					}
-//					case 2: {
-//						
-//						break;
-//					}
-//					case 3: {
-//						
-//						break;
-//					}
-//					case 4: {
-//						key=4;
-//						JOptionPane.showMessageDialog(null, "Volte sempre!!  :)");
-//						break;
-//					}
-//					default:
-//						throw new IllegalArgumentException("Unexpected value: " + key);
-//				}
-//			
-//			} catch (Exception e) {
-//				System.out.println(e.getMessage());
-//			}
-//		}while(key != 4);
+		int key=0;
+		Path newArq=null;
+		do {
+			try {
+				key = Integer.parseInt(JOptionPane.showInputDialog(null, 
+						"<1> Definir caminho e nome de Arquivo TXT para gravação\r\n"
+						+ "<2> Cadastrar Projeto\r\n"
+						+ "<3> Abrir Arquivo do Projeto\r\n"
+						+ "<4> Sair"));
+				
+				switch (key) {
+					case 1: {
+						newArq = Tools.Inicializador();
+						JOptionPane.showMessageDialog(null, "Cadastro definido com sucesso! ");
+							
+						break;
+					}	
+					case 2: {
+						Tools.escritor(newArq.toString());
+						JOptionPane.showMessageDialog(null, "Cadastro definido com sucesso! ");
+						break;
+					}
+					case 3: {
+						Tools.leitor(newArq.toString());
+						break;
+					}
+					case 4: {
+						JOptionPane.showMessageDialog(null, "Volte sempre!!  :)");
+						break;
+					}
+					default:
+						JOptionPane.showMessageDialog(null,"Unexpected value: " + key);
+				}
+			
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null,e.getMessage());
+			}
+		}while(key != 4);
 		
 
 		
@@ -92,32 +93,34 @@ public class Main {
 //		
 //		array.add(rendaBasica);
 		
+		
+		/*
 		//01	
-		Path caminho = Paths.get("C:", "Jogos-nao-Steam"); //abrindo as pastas
-		Path newArq = caminho.resolve("RendaBasica.txt"); //abrir 
+		Path newcaminho = Paths.get("C:", "Jogos-nao-Steam"); //abrindo as pastas
+		Path newArquivo = newcaminho.resolve("RendaBasica.txt"); //abrir 
 		
-		System.out.println(newArq);//conferir se está certo
+		System.out.println(newArquivo);//conferir se está certo
 		
-		//02	
-//		BufferedWriter escritor = new BufferedWriter(new FileWriter(newArq.toString())); //Chamando o Escritor
-//		
-//		
-//		String titulo = JOptionPane.showInputDialog("Titulo: ");
-//		String objetivo = JOptionPane.showInputDialog("obejetivo: ");
-//		String endereco = JOptionPane.showInputDialog("endereço: ");
-//		String dataInicio = JOptionPane.showInputDialog("data inicio: ");
-//		String status = JOptionPane.showInputDialog("Status: ");
-//		
-//		//escritor.append("\n"+ titulo +" | "+ objetivo +" | "+ endereco +" | "+ dataInicio +" | "+ status);
-//		escritor.newLine();
-//		escritor.write("\n"+ titulo +" | "+ objetivo +" | "+ endereco +" | "+ dataInicio +" | "+ status);
-//		
-//		
-//		escritor.close();
-//		
+		
+		BufferedWriter escritor = new BufferedWriter(new FileWriter(newArquivo.toString())); //Chamando o Escritor
+		
+		
+		String titulo = JOptionPane.showInputDialog("Titulo: ");
+		String objetivo = JOptionPane.showInputDialog("obejetivo: ");
+		String endereco = JOptionPane.showInputDialog("endereço: ");
+		String dataInicio = JOptionPane.showInputDialog("data inicio: ");
+		String status = JOptionPane.showInputDialog("Status: ");
+		
+		escritor.append("\n"+ titulo +" | "+ objetivo +" | "+ endereco +" | "+ dataInicio +" | "+ status);
+		escritor.newLine();
+		
+		
+		
+		escritor.close();
+		
 		
 		//03
-		BufferedReader leitor = new BufferedReader(new FileReader(newArq.toString()));
+		BufferedReader leitor = new BufferedReader(new FileReader(newArquivo.toString()));
 		String linha = "";
 		while (true) {
 			if (linha != null) {
@@ -132,6 +135,7 @@ public class Main {
 		//04
 		
 		
+		*/
 		
 		
 		

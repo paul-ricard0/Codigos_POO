@@ -1,4 +1,4 @@
-package monitoria.prova_pc2_tipo1;
+package monitoria.prova.pc2.tipo1;
 
 public class Q2_pessoa {
 	
