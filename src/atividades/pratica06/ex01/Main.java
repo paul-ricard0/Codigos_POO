@@ -10,27 +10,30 @@ public class Main {
 		
 		int key=0;
 		
+		ConectarBD bd = new ConectarBD();
+	    bd.connect();
+		
 		do {
 			
 			try {
 				
 				key = Integer.parseInt(JOptionPane.showInputDialog(null, 
-						"<1> Pesquisar Livro\r\n"
+						"<1> Mostrar todos os livros Livro \r\n"
 						+ "<2> Pesquisar Cliente\r\n"
 						+ "<3> Pesquisar os Pedidos de um Cliente\r\n"
 						+ "<4> Sair"));
 				
 				switch (key) {
 					case 1: {
-						
+						bd.getAllLivros();
 						break;
 					}
 					case 2: {
-						
+						bd.getCliente();
 						break;
 					}
 					case 3: {
-						
+						bd.getPedidosCliente();
 						break;
 					}
 					case 4: {

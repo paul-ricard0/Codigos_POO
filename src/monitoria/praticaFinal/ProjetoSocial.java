@@ -1,4 +1,4 @@
-package monitoria.ex06file;
+package monitoria.praticaFinal;
 
 public class ProjetoSocial {
 	
@@ -9,21 +9,22 @@ public class ProjetoSocial {
 	private String status;
 	
 	
-	
-	
-	
-	
-	public ProjetoSocial() {
-		super();
-	}
 	public ProjetoSocial(String titulo, String objetivo, String endereco, String dataInicio, String status) {
-		super();
 		this.titulo = titulo;
 		this.objetivo = objetivo;
 		this.endereco = endereco;
 		this.dataInicio = dataInicio;
 		this.status = status;
 	}
+	
+	public ProjetoSocial() {
+		super();
+	}
+	
+	
+	
+	
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -54,9 +55,5 @@ public class ProjetoSocial {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
-	
-	
+
 }

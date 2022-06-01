@@ -1,4 +1,4 @@
-package monitoria.pj300;
+package monitoria.ex05;
 
 public class Ex09_300 {
 

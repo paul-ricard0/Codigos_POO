@@ -1,4 +1,4 @@
-package atividades.praticafinal;
+package atividades.praticaFinal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
