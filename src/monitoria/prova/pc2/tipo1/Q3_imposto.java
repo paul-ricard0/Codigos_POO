@@ -18,8 +18,8 @@ public class Q3_imposto {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.print("Nome: ");
-		String nome = scan.nextLine();
+//		System.out.print("Nome: ");
+//		String nome = scan.nextLine();
 		
 		System.out.print("\nPessoa Física[1] Pessoa Jurídica[2}: ");
 		int tipo = scan.nextInt();

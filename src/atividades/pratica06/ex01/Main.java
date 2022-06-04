@@ -10,7 +10,7 @@ public class Main {
 		
 		int key=0;
 		
-		ConectarBD bd = new ConectarBD();
+		GerenciadorBD bd = new GerenciadorBD();
 	    bd.connect();
 		
 		do {

@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ConectarBD {
+public class GerenciadorBD {
 	
 	private final String url = "jdbc:postgresql://localhost/pratica06"; // NOME DO BD
 	private final String user = "postgres";// NOME DO USER

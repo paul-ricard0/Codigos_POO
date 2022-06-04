@@ -14,14 +14,14 @@ public class Ex04 {
 		
 		System.out.println("Digite os segundos");
 		segundos = scan.nextInt();
-		
+		scan.close();
 		
 		horas = segundos / 3600;
 		resto = segundos % 3600;
 		minutos = resto / 60;
 		resto = resto % 60;
 		
-		System.out.println("Digite os segundos");
+		System.out.println("Digite os segundos ");
 
 	}
 }

@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ConectarBD {
+public class GerenciadorBD {
 	
-	private final String url = "";
-	private final String user = "";
-	private final String password = "";
+	private final String url = "jdbc:postgresql://localhost/pratica06";
+	private final String user = "postgres";
+	private final String password = "pauloegol23";
 	Connection conn = null;
 	
 	public Connection connect() throws SQLException {
