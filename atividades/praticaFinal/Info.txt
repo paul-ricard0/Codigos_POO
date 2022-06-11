@@ -1,0 +1,18 @@
+fazer um Sistema de Achados e Perdidos.
+
+Requisitos Funcionais:
+
+1- Cadastrar os itens encontrados ou pedidos. Por exemplo: local, data, hora, título, observação.
+
+2- Será possível alterar e excluir um item cadastrado.
+
+3- Listar os itens perdidos por data e status
+
+4- Procurar um item por título
+
+Requisitos Técnicos
+
+Você deverá criar a estrutura de dados em algum software gerenciador de banco de dados (ex. PostgreSQL)
+Utilize a organização dos dados TAD em classes
+Utilize o tratamento de exceções: Try, Catch
+Crie a interface gráfica com JOptionPane ou Swing
