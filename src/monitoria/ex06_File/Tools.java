@@ -1,4 +1,4 @@
-package monitoria.ex06file;
+package monitoria.ex06_File;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,13 +24,11 @@ public class Tools {
 	}
 	
 	
-	
-	
 	public static void escritor(String arquivo) throws IOException {
 		BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo));
 		
 		String titulo = JOptionPane.showInputDialog("Titulo: ");
-		String objetivo = JOptionPane.showInputDialog("obejetivo: ");
+		String objetivo = JOptionPane.showInputDialog("objetivo: ");
 		String endereco = JOptionPane.showInputDialog("endereço: ");
 		String dataInicio = JOptionPane.showInputDialog("data inicio: ");
 		String status = JOptionPane.showInputDialog("Status: ");

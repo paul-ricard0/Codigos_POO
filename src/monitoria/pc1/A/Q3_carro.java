@@ -1,4 +1,4 @@
-package monitoria.prova.pc1.tipo1;
+package monitoria.pc1.A;
 
 import java.util.Scanner;
 

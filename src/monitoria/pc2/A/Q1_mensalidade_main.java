@@ -1,4 +1,4 @@
-package monitoria.prova.pc2.tipo2;
+package monitoria.pc2.A;
 
 import java.util.Scanner;
 
@@ -36,6 +36,5 @@ public class Q1_mensalidade_main {
 		matricula.calculaMensalidade();
 		System.out.println("Valor da mensalidade: "+ matricula.getMensalidade());
 	}
-
 
 }

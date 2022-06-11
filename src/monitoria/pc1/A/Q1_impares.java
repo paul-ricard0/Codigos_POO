@@ -1,5 +1,4 @@
-package monitoria.prova.pc1.tipo1;
-
+package monitoria.pc1.A;
 
 /*
  * Escreva um algoritmo que imprime os números ímpares de 1

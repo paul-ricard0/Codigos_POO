@@ -22,9 +22,6 @@ public class ProjetoSocial {
 	}
 	
 	
-	
-	
-	
 	public String getTitulo() {
 		return titulo;
 	}

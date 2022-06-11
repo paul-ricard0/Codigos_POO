@@ -26,14 +26,11 @@ public class Tools {
 		return criarArquivo; 
 	}
 	
-	
-	
-	
 	public static void escritor(String arquivo) throws IOException {
 		BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo));
 		
 		String titulo = JOptionPane.showInputDialog("Titulo: ");
-		String objetivo = JOptionPane.showInputDialog("obejetivo: ");
+		String objetivo = JOptionPane.showInputDialog("objetivo: ");
 		String endereco = JOptionPane.showInputDialog("endereço: ");
 		String dataInicio = JOptionPane.showInputDialog("data inicio: ");
 		String status = JOptionPane.showInputDialog("Status: ");

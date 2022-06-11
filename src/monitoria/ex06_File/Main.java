@@ -1,4 +1,4 @@
-package monitoria.ex06file;
+package monitoria.ex06_File;
 
 
 import java.io.IOException;

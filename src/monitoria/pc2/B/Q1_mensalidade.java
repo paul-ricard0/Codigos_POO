@@ -1,7 +1,6 @@
-package monitoria.prova.pc2.tipo1;
+package monitoria.pc2.B;
 
 public class Q1_mensalidade {
-
 	private double mensalidade;
 	private int qtd_irmao;
 
@@ -32,5 +31,4 @@ public class Q1_mensalidade {
 			this.mensalidade = this.mensalidade * 0.85;
 		}
 	}
-
 }

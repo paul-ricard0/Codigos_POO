@@ -1,5 +1,4 @@
-package monitoria.prova.pc2.tipo1;
-
+package monitoria.pc2.A;
 public class Q2_pessoa {
 	
 	private String nome;
