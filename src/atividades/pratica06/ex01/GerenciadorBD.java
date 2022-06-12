@@ -118,9 +118,7 @@ public class GerenciadorBD {
             printSQLException(e);
         }
     }
-    
-    
-    
+
 	
     // PRINT DAS EXCEPTION
     public static void printSQLException(SQLException ex) {
@@ -138,9 +136,6 @@ public class GerenciadorBD {
             }
         }
     }
-    
-    
-	
-	
+
 
 }

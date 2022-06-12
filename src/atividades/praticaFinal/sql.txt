@@ -1,50 +1,29 @@
-CREATE TABLE achados_perdidos
+CREATE TABLE item
 (
-  id_item  		SERIAL,
-  id_pessoa		SERIAL,
-  nm_item          	VARCHAR(40),
-  local_perdido   VARCHAR(20),
-  data_perdido    	DATE,
-  observacao VARCHAR(40),
-  Status_Achado     boolean,	
+	id_item  		SERIAL,
+	local_item   VARCHAR(20),
+	data_item   VARCHAR(12),
+	nome VARCHAR(40),
+	obs    VARCHAR(40),
+	tipo VARCHAR(20),
   PRIMARY KEY(id_item)
 );
 
-CREATE TABLE pessoa
-(
-  id_pessoa  		SERIAL,
-  nm_pessoa			VARCHAR(40),
-  qtd_achados		INTEGER,
-  qtd_perdidos	    INTEGER,
-  PRIMARY KEY(id_pessoa)
-);
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('faculdade', '10/12/2000', 'relogio', 'perdido', 'metal');	
 
-
-alter table "achados_perdidos" add  foreign key ("id_pessoa") references "pessoa" ("id_pessoa") on update restrict on delete restrict;
-
-
-
-INSERT INTO pessoa (nm_pessoa, qtd_achados, qtd_perdidos)
-	VALUES ('Roger S. Pressman', 1, 2);	
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('casa', '01/02/2013', 'mesa', 'achado', 'madeira');
 	
-INSERT INTO pessoa (nm_pessoa, qtd_achados, qtd_perdidos)
-	VALUES ('Paulo', 4, 0);	
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('laboratorio', '07/08/2010', 'GARRAFA', 'perdido', 'palstico');	
 
-INSERT INTO pessoa (nm_pessoa, qtd_achados, qtd_perdidos)
-	VALUES ('Ricardo', 0, 3);	
-
-INSERT INTO pessoa (nm_pessoa, qtd_achados, qtd_perdidos)
-	VALUES ('Xt', 5, 0);	
-	
-INSERT INTO pessoa (nm_pessoa, qtd_achados, qtd_perdidos)
-	VALUES ('Lima', 1, 10);	
-
-	
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('laboratorio', '01/01/2022', 'PENDRIVE', 'perdido', 'tecnologia');	
 
 
+select * from item
 
-
-
-
+DROP TABLE item
 
 

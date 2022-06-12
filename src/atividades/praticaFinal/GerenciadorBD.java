@@ -11,25 +11,24 @@ import javax.swing.JOptionPane;
 
 public class GerenciadorBD {
 	
-	private final String url = "jdbc:postgresql://localhost/pratica06";
+	private final String url = "jdbc:postgresql://localhost/praticaFinal";
 	private final String user = "postgres";
 	private final String password = "pauloegol23";
 	Connection conn = null;
+	PreparedStatement statement;
 	
 	public Connection connect() throws SQLException {
-		
-		
 		try {
 			
 			conn = DriverManager.getConnection(url, user, password);
 			
 			if(conn != null){
-				System.out.println("Conexão ao Banco de dados feita com sucesso");
+				System.out.println("ConexÃ£o ao Banco de dados feita com sucesso");
 			}else {
-				System.out.println("Conexão ao Banco de dados falho!!!!");
+				System.out.println("ConexÃ£o ao Banco de dados falho!!!!");
 			}
 			
-			//versão do postgreeSQL
+			//versÃ£o do postgreeSQL
 			Statement statement = (Statement) conn.createStatement();
 			ResultSet resultSet = ((java.sql.Statement) statement).executeQuery("SELECT VERSION()");
 			
@@ -44,30 +43,220 @@ public class GerenciadorBD {
 		return conn;
 	}
 	
+	public Connection closeConn() throws SQLException {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return conn;
+	}
 	
-
-    
-    public void insertPessoa(){
+	public void criartabela() {
     	try {
+            statement = conn.prepareStatement("CREATE TABLE item\r\n"
+            		+ "(\r\n"
+            		+ "	id_item  		SERIAL,\r\n"
+            		+ "	local_item   VARCHAR(20),\r\n"
+            		+ "	data_item   VARCHAR(12),\r\n"
+            		+ "	nome VARCHAR(40),\r\n"
+            		+ "	obs    VARCHAR(40),\r\n"
+            		+ "	tipo VARCHAR(20),\r\n"
+            		+ "  PRIMARY KEY(id_item)\r\n"
+            		+ ");\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('faculdade', '10/12/2000', 'relogio', 'Joao', 'perdido');	\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('casa', '01/02/2013', 'mesa', 'NÃ£o sei', 'achado');\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('laboratorio', '07/08/2010', 'GARRAFA', 'Marya', 'perdido');	\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('laboratorio', '01/01/2022', 'PENDRIVE', 'Paulo', 'perdido');"); 
+
+    		 statement.executeUpdate();
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+		
+	public void cadastrarItem() {
+    	try {
+    		String local= JOptionPane.showInputDialog(null, "Local: ");
+    		String data= JOptionPane.showInputDialog(null, "data: ");
+    		String titulo= JOptionPane.showInputDialog(null, "nome: ");
+    		String obs= JOptionPane.showInputDialog(null, "ObservaÃ§Ã£o: ");
+    		String tipo= JOptionPane.showInputDialog(null, "tipo: [achado / perdido]");
     		
-    		int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o Id do item: "));
-    		String status_achado = JOptionPane.showInputDialog(null, "Já acho o pedido? [S] ou [N]");
-    		String nomeItem = JOptionPane.showInputDialog(null, "Digite o nome do item: ");
-    		String local = JOptionPane.showInputDialog(null, "Digite o local que foi perdido: ");
-    		String obs = JOptionPane.showInputDialog(null, "Alguma Oservação");
-    		
-	    	PreparedStatement statement = conn.prepareStatement(""+
-	    			"INSERT INTO achados_perdidos (id_pessoa, nm_item, local_perdido, observacao, status_achado) "+
-	    			"VALUES ("+id+  ", '"+nomeItem +"', '"+ local +"', '"+ obs +"', "+status_achado + ");");
-	    	
-	    	ResultSet rs = statement.executeQuery();
-	    	
+            statement = conn.prepareStatement("INSERT INTO item" +
+                    "  (local_item, data_item, nome, obs, tipo) VALUES " +
+                    " (?, ?, ?, ?, ?);"); 
+            
+            statement.setString(1, local);
+            statement.setString(2, data);
+            statement.setString(3, titulo);
+            statement.setString(4, obs);
+            statement.setString(5, tipo);
+
+            //Processando
+    		 statement.executeUpdate();
+
 		}catch (SQLException e) {
             printSQLException(e);
         }
     }
 
+	public void alterarItem(int key) {
+		int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id de quem voce deseja alterar: "));
+		
+		String coluna="", alterar="";
+		switch (key) {
+			case 1: {
+				;
+				coluna = "id_item";
+				break;
+			}
+			case 2: {
+				coluna = "local_item";
+				break;
+			}
+			case 3: {
+				coluna = "data_item";
+				break;
+			}
+			case 4: {
+				coluna = "nome";
+				break;
+			}
+			case 5: {
+				coluna = "observacao";
+				break;
+			}
+			case 6: {
+				coluna = "tipo";
+				break;
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + key);
+		}
+				
+    	try {
+    		printLine(id, "Coluna a ser alterada: "); //Mostrando linha
+    		
+    		// Criando o statement (varivel responsavel por executar as instruï¿½ï¿½es)
+    		statement = conn.prepareStatement("update item set "+ coluna +" = ? where id_item = ?");
+    		alterar = JOptionPane.showInputDialog(null, "Aualizar para: ");
+    		
+    		//Vai receber o resultado da query
+    		if(key==1) {
+    			statement.setInt(1, Integer.parseInt(alterar));
+    		}else {
+    			statement.setString(1, alterar);
+    		}
+    		statement.setInt(2, id);
+    		
+            //Processando
+    		 statement.executeUpdate();
 
+     		printLine(id, "Nova linha: "); //Mostrando linha
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+	}
+
+	public void excluirItem() {
+    	try {
+    		int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Qual Id excluir? "));
+    		
+    		printLine(id, "CERTEZA QUE DESEJA EXCLUIR!!!!!!!!!!:  "); //Mostrando linha
+    		
+    		int r = Integer.parseInt(JOptionPane.showInputDialog(null, "CERTEZA? [1]SIM [2]NÃƒO"));
+    		if(r==1) {
+	    		// Criando o statement (varivel responsavel por executar as instruÃ§oes)
+	    		statement = conn.prepareStatement( "delete from item where id_item = ?;");
+	    		
+	    		//Vai receber o resultado da query
+	    		statement.setInt(1, id);
+	            
+	            //Processandos
+	    		 statement.executeUpdate();
+	    		 JOptionPane.showMessageDialog(null, "ITEM EXLUIDO: "+ id);
+    		}
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+	}
+		 
+	public void listarItem() {
+    	try {
+    		// Criando o statement (varivel responsavel por executar as instruï¿½ï¿½es)
+    		statement = conn.prepareStatement("select * from item");
+    		
+    		//Vai receber o resultado da query
+    		ResultSet result= statement.executeQuery();
+            
+            //Processando
+    		System.out.print("\n##########################################################################################################");
+    		while(result.next()) {
+    			int id = result.getInt("id_item");
+    			String local = result.getString("local_item");
+    			String data = result.getString("data_item");
+    			String nome = result.getString("nome");
+    			String obs = result.getString("obs");
+    			String tipo = result.getString("tipo");
+    			System.out.println("\n"+ id +" / "+ local +" / "+ data +" / "+ nome +" / "+ obs +" / "+ tipo);
+    		}
+    		System.out.println("##########################################################################################################");
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+	}
+	
+	public void procurarItemPorNome() {
+    	try {
+    		// Criando o statement (varivel responsavel por executar as instruï¿½ï¿½es)
+    		statement = conn.prepareStatement("select * from item where nome = ?");
+	    	
+	    	String titulo = JOptionPane.showInputDialog(null, "Digite o nome: ");
+    		//Vai receber o resultado da query
+    		
+	    	statement.setString(1, titulo);
+    		
+            //Processando
+			ResultSet result= statement.executeQuery();
+			while(result.next()) {
+				int id_item = result.getInt("id_item");
+				String local = result.getString("local_item");
+				String data = result.getString("data_item");
+				String nome = result.getString("nome");
+				String obs = result.getString("obs");
+				String tipo = result.getString("tipo");
+				System.out.println("\n"+ id_item +" / "+ local +" / "+ data +" / "+ nome +" / "+ obs +" / "+ tipo);
+			}
+             
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+	}
+	
+	public void printLine(int id, String msg) {
+		try {	
+			statement = conn.prepareStatement("select * from item where id_item = ?");
+			statement.setInt(1, id);
+			ResultSet result= statement.executeQuery();
+			while(result.next()) {
+				int id_item = result.getInt("id_item");
+				String local = result.getString("local_item");
+				String data = result.getString("data_item");
+				String nome = result.getString("nome");
+				String obs = result.getString("obs");
+				String tipo = result.getString("tipo");
+				System.out.println("\n"+ msg +" / "+ id_item +" / "+ local +" / "+ data +" / "+ nome +" / "+ obs +" / "+ tipo);
+			}
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+	}
+	
 	private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
@@ -83,22 +272,5 @@ public class GerenciadorBD {
             }
         }
 	}
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
