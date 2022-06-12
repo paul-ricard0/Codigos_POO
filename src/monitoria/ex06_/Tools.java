@@ -1,4 +1,4 @@
-package monitoria.ex06_File;
+package monitoria.ex06_;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

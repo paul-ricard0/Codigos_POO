@@ -1,0 +1,29 @@
+CREATE TABLE item
+(
+	id_item  		SERIAL,
+	local_item   VARCHAR(20),
+	data_item   VARCHAR(12),
+	nome VARCHAR(40),
+	obs    VARCHAR(40),
+	tipo VARCHAR(20),
+  PRIMARY KEY(id_item)
+);
+
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('faculdade', '10/12/2000', 'relogio', 'perdido', 'metal');	
+
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('casa', '01/02/2013', 'mesa', 'achado', 'madeira');
+	
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('laboratorio', '07/08/2010', 'GARRAFA', 'perdido', 'palstico');	
+
+INSERT INTO item (local_item, data_item, nome, obs, tipo)
+	VALUES ('laboratorio', '01/01/2022', 'PENDRIVE', 'perdido', 'tecnologia');	
+
+
+select * from item
+
+DROP TABLE item
+
+

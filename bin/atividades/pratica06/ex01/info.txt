@@ -1,0 +1,25 @@
+
+Tarefa consiste em criar uma aplicação em 
+Java que conecte a um banco de dados relacional (exemplo: PostgreSQL)
+
+Execute o Script de criação das tabelas e inserção dos dados:
+Backup_Livraria.sql  Baixar Backup_Livraria.sql  e em seguida faça a conexão em Java.
+
+ 
+Fazer no main um menu de opções de consulta ao banco de dados:
+
+<1> Pesquisar Livro
+
+<2> Pesquisar Cliente
+
+<3> Pesquisar os Pedidos de um Cliente
+
+<4> Sair
+
+ 
+
+<1> A Opção de Pesquisar Livro deve mostrar todos os livros existentes no banco de dados
+
+<2> A Opção Cliente  deve mostrar todos os registros de clientes existentes no banco de dados
+
+<3> A Opção de Pesquisar Pedidos por cliente, deve solicitar id_cliente ou o seu nome (nm_cliente)*/
