@@ -46,7 +46,7 @@ public class Main {
 			}while(key != 0);
 			bd.closeConn();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(null,e.getMessage());
 		}
 	}
 	

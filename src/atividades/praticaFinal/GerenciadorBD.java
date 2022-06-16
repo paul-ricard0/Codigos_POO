@@ -11,11 +11,13 @@ import javax.swing.JOptionPane;
 
 public class GerenciadorBD {
 	
-	private final String url = "jdbc:postgresql://localhost/praticafinal";
+	private final String url = "jdbc:postgresql://localhost/praticaFinal";
 	private final String user = "postgres";
-	private final String password = "123456";
+	private final String password = "pauloegol23";
 	Connection conn = null;
 	PreparedStatement statement;
+	int id;
+	String local, data, titulo, obs, tipo;
 	
 	public Connection connect() throws SQLException {
 		try {
@@ -51,41 +53,14 @@ public class GerenciadorBD {
 		}
 		return conn;
 	}
-	
-	public void criartabela() {
-    	try {
-            statement = conn.prepareStatement("CREATE TABLE item\r\n"
-            		+ "(\r\n"
-            		+ "	id_item  		SERIAL,\r\n"
-            		+ "	local_item   VARCHAR(20),\r\n"
-            		+ "	data_item   VARCHAR(12),\r\n"
-            		+ "	nome VARCHAR(40),\r\n"
-            		+ "	obs    VARCHAR(40),\r\n"
-            		+ "	tipo VARCHAR(20),\r\n"
-            		+ "  PRIMARY KEY(id_item)\r\n"
-            		+ ");\r\n"
-            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
-            		+ "	VALUES ('faculdade', '10/12/2000', 'relogio', 'Joao', 'perdido');	\r\n"
-            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
-            		+ "	VALUES ('casa', '01/02/2013', 'mesa', 'Não sei', 'achado');\r\n"
-            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
-            		+ "	VALUES ('laboratorio', '07/08/2010', 'GARRAFA', 'Marya', 'perdido');	\r\n"
-            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
-            		+ "	VALUES ('laboratorio', '01/01/2022', 'PENDRIVE', 'Paulo', 'perdido');"); 
-
-    		 statement.executeUpdate();
-		}catch (SQLException e) {
-            printSQLException(e);
-        }
-    }
-		
+			
 	public void cadastrarItem() {
     	try {
-    		String local= JOptionPane.showInputDialog(null, "Local: ");
-    		String data= JOptionPane.showInputDialog(null, "data: ");
-    		String titulo= JOptionPane.showInputDialog(null, "nome: ");
-    		String obs= JOptionPane.showInputDialog(null, "Observação: ");
-    		String tipo= JOptionPane.showInputDialog(null, "tipo: [achado / perdido]");
+    		local= JOptionPane.showInputDialog(null, "Local: ");
+    		data= JOptionPane.showInputDialog(null, "data: ");
+    		titulo= JOptionPane.showInputDialog(null, "nome do item: ");
+    		obs= JOptionPane.showInputDialog(null, "Observação: ");
+    		tipo= JOptionPane.showInputDialog(null, "tipo: [achado / perdido]");
     		
             statement = conn.prepareStatement("INSERT INTO item" +
                     "  (local_item, data_item, nome, obs, tipo) VALUES " +
@@ -97,9 +72,8 @@ public class GerenciadorBD {
             statement.setString(4, obs);
             statement.setString(5, tipo);
 
-            //Processando
-    		 statement.executeUpdate();
-
+    		statement.executeUpdate();
+    		
 		}catch (SQLException e) {
             printSQLException(e);
         }
@@ -138,16 +112,14 @@ public class GerenciadorBD {
 				throw new IllegalArgumentException("Unexpected value: " + key);
 		}
 		
-		int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id de quem voce deseja alterar: "));	
+		//Escolhendo a linha a ser alterada
+		id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id de quem voce deseja alterar: "));	
 		
 		try {
-		printLinha(id, "Coluna a ser alterada: "); //Mostrando linha
-		
-		alterar = JOptionPane.showInputDialog(null, "Aualizar para: ");
-		
-    	
-    		
-    		
+			printLinha("Coluna a ser alterada: ", id); //Mostrando linha
+			
+			alterar = JOptionPane.showInputDialog(null, "Aualizar para: ");
+
     		// Criando o statement (varivel responsavel por executar as instru��es)
     		statement = conn.prepareStatement("update item set "+ coluna +" = ? where id_item = ?");
     		
@@ -163,7 +135,7 @@ public class GerenciadorBD {
             //Processando
     		 statement.executeUpdate();
 
-     		printLinha(id, "Nova linha: "); //Mostrando linha
+     		printLinha("Nova linha: ", id); //Mostrando linha
 		}catch (SQLException e) {
             printSQLException(e);
         }
@@ -171,9 +143,9 @@ public class GerenciadorBD {
 
 	public void excluirItem() {
     	try {
-    		int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Qual Id excluir? "));
+    		id = Integer.parseInt(JOptionPane.showInputDialog(null, "Qual Id excluir? "));
     		
-    		printLinha(id, "CERTEZA QUE DESEJA EXCLUIR!!!!!!!!!!:  "); //Mostrando linha
+    		printLinha("CERTEZA QUE DESEJA EXCLUIR!!!!!!!!!!:  ", id); //Mostrando linha
     		
     		int r = Integer.parseInt(JOptionPane.showInputDialog(null, "CERTEZA? [1]SIM [2]NÃO"));
     		if(r==1) {
@@ -184,8 +156,8 @@ public class GerenciadorBD {
 	    		statement.setInt(1, id);
 	            
 	            //Processandos
-	    		 statement.executeUpdate();
-	    		 JOptionPane.showMessageDialog(null, "ITEM EXLUIDO: "+ id);
+	    		statement.executeUpdate();
+	    		JOptionPane.showMessageDialog(null, "ITEM EXLUIDO: "+ id);
     		}
 		}catch (SQLException e) {
             printSQLException(e);
@@ -199,20 +171,9 @@ public class GerenciadorBD {
     		
     		//Vai receber o resultado da query
     		ResultSet result= statement.executeQuery();
-            String tabela = "";
-            //Processando
-    		//System.out.print("\n##########################################################################################################");
-    		while(result.next()) {
-    			int id = result.getInt("id_item");
-    			String local = result.getString("local_item");
-    			String data = result.getString("data_item");
-    			String nome = result.getString("nome");
-    			String obs = result.getString("obs");
-    			String tipo = result.getString("tipo");
-    			tabela += "\n"+ id +" / "+ local +" / "+ data +" / "+ nome +" / "+ obs +" / "+ tipo;
-    		}
-    		//System.out.println("##########################################################################################################");
-    		JOptionPane.showMessageDialog(null, tabela);
+    		
+    		//mostrando tabela
+    		printTabela(result);
 		}catch (SQLException e) {
             printSQLException(e);
         }
@@ -250,7 +211,7 @@ public class GerenciadorBD {
         }
 	}
 	
-	public void printLinha(int id, String msg) {
+	public void printLinha(String msg, int id) {
 		try {	
 			statement = conn.prepareStatement("select * from item where id_item = ?");
 			statement.setInt(1, id);
@@ -263,7 +224,7 @@ public class GerenciadorBD {
     			String nome = result.getString("nome");
     			String obs = result.getString("obs");
     			String tipo = result.getString("tipo");
-    			tabela += "\n"+ id_item +" / "+ local +" / "+ data +" / "+ nome +" / "+ obs +" / "+ tipo;
+    			tabela += "\n"+ id_item +" / "+ local +" / "+ data +" / "+ nome +" / "+ obs +" / "+ tipo +"\n";
     		}
 
     		JOptionPane.showMessageDialog(null, tabela);
@@ -272,6 +233,25 @@ public class GerenciadorBD {
         }
 	}
 	
+	public void printTabela(ResultSet result) {
+    	try {
+			String tabela = "#######################################################################################";
+	    	while(result.next()) {
+				int id = result.getInt("id_item");
+				String local = result.getString("local_item");
+				String data = result.getString("data_item");
+				String nome = result.getString("nome");
+				String obs = result.getString("obs");
+				String tipo = result.getString("tipo");
+				tabela += "\n"+ id +"  |  "+ local +"  |  "+ data +"  |  "+ nome +"  |  "+ obs +"  |  "+ tipo +"\n";
+	    	}
+	    	tabela += "#######################################################################################";
+	    	JOptionPane.showMessageDialog(null, tabela);
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+	}
+
 	private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
@@ -287,5 +267,33 @@ public class GerenciadorBD {
             }
         }
 	}
+	
+	public void criartabela() {
+    	try {
+            statement = conn.prepareStatement("CREATE TABLE item\r\n"
+            		+ "(\r\n"
+            		+ "	id_item  		SERIAL,\r\n"
+            		+ "	local_item   VARCHAR(20),\r\n"
+            		+ "	data_item   VARCHAR(12),\r\n"
+            		+ "	nome VARCHAR(40),\r\n"
+            		+ "	obs    VARCHAR(40),\r\n"
+            		+ "	tipo VARCHAR(20),\r\n"
+            		+ "  PRIMARY KEY(id_item)\r\n"
+            		+ ");\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('faculdade', '10/12/2000', 'relogio', 'Joao', 'perdido');	\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('casa', '01/02/2013', 'mesa', 'Não sei', 'achado');\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('laboratorio', '07/08/2010', 'GARRAFA', 'Marya', 'perdido');	\r\n"
+            		+ "INSERT INTO item (local_item, data_item, nome, obs, tipo)\r\n"
+            		+ "	VALUES ('laboratorio', '01/01/2022', 'PENDRIVE', 'Paulo', 'perdido');"); 
+
+    		 statement.executeUpdate();
+		}catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+	
 	
 }
