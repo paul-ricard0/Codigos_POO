@@ -60,7 +60,7 @@ public class Main {
 	}
 
 	public static int menuAlterar() {
-		return Integer.parseInt(JOptionPane.showInputDialog(null, "O QUE DESEJA ALTERAR???"
+		return Integer.parseInt(JOptionPane.showInputDialog(null, "O QUE DESEJA ALTERAR???\n"
 				+ "<1> - ID\r\n"
 				+ "<2> - LOCAL\r\n"
 				+ "<3> - DATA\r\n"
@@ -68,7 +68,6 @@ public class Main {
 				+ "<5> - OBSERVACAO\r\n"
 				+ "<6> - TIPO"));
 	}
-
 }
 
 	

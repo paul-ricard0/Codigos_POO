@@ -19,10 +19,40 @@ public class GerenciadorBD {
 	int id;
 	String local, data, nome, obs, tipo;
 	String tabela;
-
-			
+	
+	
+	public Connection connect() throws SQLException {
+	
+		conn = DriverManager.getConnection(url, user, password);
+		
+		if(conn != null){
+			System.out.println("Conexão ao Banco de dados feita com sucesso");
+		}else {
+			System.out.println("Conexão ao Banco de dados falho!!!!");
+		}
+		
+		//versão do postgreeSQL
+		Statement statement = (Statement) conn.createStatement();
+		ResultSet resultSet = ((java.sql.Statement) statement).executeQuery("SELECT VERSION()");
+		if (resultSet.next()) {
+			System.out.println(resultSet.getString(1));
+		}
+		
+		return conn;
+	}
+	
+	public Connection closeConn() throws SQLException {
+		conn.close();
+		return conn;
+	}
+	
+	public void listarItem() throws SQLException {
+		statement = conn.prepareStatement("select * from item");
+		
+		JOptionPane.showMessageDialog(null, getTabela(statement));
+	}
+	
 	public void cadastrarItem() throws SQLException {
-    
 		local= JOptionPane.showInputDialog(null, "Local: ");
 		data= JOptionPane.showInputDialog(null, "data: ");
 		nome= JOptionPane.showInputDialog(null, "nome do item: ");
@@ -40,13 +70,32 @@ public class GerenciadorBD {
         statement.setString(5, tipo);
    
 		statement.executeUpdate();
-
     }
 
+	public void excluirItem() throws SQLException {
+
+		id = Integer.parseInt(JOptionPane.showInputDialog(null, "Qual Id excluir? "));
+	
+		statement = conn.prepareStatement("select * from item where id_item = ?");
+		statement.setInt(1, id);
+		JOptionPane.showMessageDialog(null, getTabela(statement));
+		
+		int r = Integer.parseInt(JOptionPane.showInputDialog(null, "CERTEZA que quer EXLUIR? [1]SIM [2]NÃO"));
+		if(r==1) {
+			statement = conn.prepareStatement( "delete from item where id_item = ?;");
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Id EXLUIDO: "+ id);
+		}else {
+			JOptionPane.showMessageDialog(null, "Item NÃO excluido");
+		}
+	}
+		 
 	public void alterarItem(int key) throws SQLException {
 		
 		String coluna="", alterar="";
-		switch (key) {
+		switch (key) { //Escolhendo a coluna a ser alterada
 			case 1: {
 				;
 				coluna = "id_item";
@@ -65,7 +114,7 @@ public class GerenciadorBD {
 				break;
 			}
 			case 5: {
-				coluna = "observacao";
+				coluna = "obs";
 				break;
 			}
 			case 6: {
@@ -77,59 +126,49 @@ public class GerenciadorBD {
 		}
 	
 		id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id de quem voce deseja alterar: "));	
-		
 	
+		//Mostrando item a ser alterado
 		statement = conn.prepareStatement("select * from item where id_item = ?");
 		statement.setInt(1, id);
-		//printLinha("Coluna a ser alterada: ", id); 
-		JOptionPane.showMessageDialog(null, getTabela(statement));
-		alterar = JOptionPane.showInputDialog(null, "Aualizar para: ");
-
-		statement = conn.prepareStatement("update item set "+ coluna +" = ? where id_item = ?");
-    		
-   
-		if(key==1) {
-			statement.setInt(1, Integer.parseInt(alterar));
-		}else { 
-			statement.setString(1, alterar);
-		}
-		statement.setInt(2, id);
+		JOptionPane.showMessageDialog(null, "Item a ser alterado: \n"+getTabela(statement));
 		
-		statement.executeUpdate();
-
-		JOptionPane.showMessageDialog(null, getTabela(statement));
-
-	}
-
-	public void excluirItem() throws SQLException {
-
-		id = Integer.parseInt(JOptionPane.showInputDialog(null, "Qual Id excluir? "));
+		int r = Integer.parseInt(JOptionPane.showInputDialog(null, "CERTEZA que quer ALTERAR? [1]SIM [2]NÃO"));
 		
-		//Mostrando linha
-		//printLinha("Item a ser Exluido: ", id);
-		statement = conn.prepareStatement("select * from item where id_item = ?");
-		statement.setInt(1, id);
-		JOptionPane.showMessageDialog(null, getTabela(statement));
-		
-		int r = Integer.parseInt(JOptionPane.showInputDialog(null, "CERTEZA? [1]SIM [2]NÃO"));
 		if(r==1) {
-			statement = conn.prepareStatement( "delete from item where id_item = ?;");
-			
-			statement.setInt(1, id);
-	        
-			statement.executeUpdate();
-			JOptionPane.showMessageDialog(null, "ITEM EXLUIDO: "+ id);
-		}
-
-	}
-		 
-
-
-
-
+			alterar = JOptionPane.showInputDialog(null, "Aualizar para: ");
 	
-	public String getTabela(PreparedStatement statement) throws SQLException {
+			statement = conn.prepareStatement("update item set "+ coluna +" = ? where id_item = ?");
+	   
+			if(key==1) { //Se for o id
+				statement.setInt(1, Integer.parseInt(alterar));
+				statement.setInt(2, id);
+				statement.executeUpdate();
+				id = Integer.parseInt(alterar);
+			}else { 
+				statement.setString(1, alterar);
+				statement.setInt(2, id);
+				statement.executeUpdate();	
+			}
+			
+			statement = conn.prepareStatement("select * from item where id_item = ?");
+			statement.setInt(1, id);
+			
+			JOptionPane.showMessageDialog(null, "Item alterado: \n"+getTabela(statement));
+		}else {
+			JOptionPane.showMessageDialog(null, "Item NÃO alterado");
+		}
+	}
+
+	public void procurarItemPorNome() throws SQLException {
+		nome = JOptionPane.showInputDialog(null, "Digite o nome do objeto: ");
 		
+		statement = conn.prepareStatement("select * from item WHERE nome LIKE ?");
+		statement.setString(1, "%"+ nome +"%");
+		
+		JOptionPane.showMessageDialog(null,getTabela(statement));
+	}
+	
+	public String getTabela(PreparedStatement statement) throws SQLException { //Print da tabela
 		ResultSet result= statement.executeQuery();
 		tabela = "";
 		while(result.next()) {
@@ -142,124 +181,6 @@ public class GerenciadorBD {
 			tabela += "\n"+ id +"  |  "+ local +"  |  "+ data +"  |  "+ nome +"  |  "+ obs +"  |  "+ tipo +"\n";
 		}
 		return tabela;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void procurarItemPorNome() throws SQLException {
-	    statement = conn.prepareStatement("select * from item WHERE nome LIKE ?");
-		
-		nome = JOptionPane.showInputDialog(null, "Digite o nome do objeto: ");
-	
-		statement.setString(1, "%"+ nome +"%");
-		
-		JOptionPane.showMessageDialog(null,getTabela(statement));
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void listarItem() throws SQLException {
-		statement = conn.prepareStatement("select * from item");
-		
-		tabela = getTabela(statement);//mostrando tabela
-		
-		JOptionPane.showMessageDialog(null, tabela);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public Connection connect() throws SQLException {
-	
-		conn = DriverManager.getConnection(url, user, password);
-		
-		if(conn != null){
-			System.out.println("Conexão ao Banco de dados feita com sucesso");
-		}else {
-			System.out.println("Conexão ao Banco de dados falho!!!!");
-		}
-		
-		//versão do postgreeSQL
-		Statement statement = (Statement) conn.createStatement();
-		ResultSet resultSet = ((java.sql.Statement) statement).executeQuery("SELECT VERSION()");
-		
-		if (resultSet.next()) {
-			System.out.println(resultSet.getString(1));
-		}
-		
-		return conn;
-	}
-	
-	public Connection closeConn() throws SQLException {
-		conn.close();
-		return conn;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	private void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
-        }
 	}
 	
 	public void criartabela() throws SQLException {
@@ -286,5 +207,21 @@ public class GerenciadorBD {
 		 statement.executeUpdate();
 
     }	
-	
+
+//	private void printSQLException(SQLException ex) {
+//        for (Throwable e: ex) {
+//            if (e instanceof SQLException) {
+//                e.printStackTrace(System.err);
+//                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+//                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+//                System.err.println("Message: " + e.getMessage());
+//                Throwable t = ex.getCause();
+//                while (t != null) {
+//                    System.out.println("Cause: " + t);
+//                    t = t.getCause();
+//                }
+//            }
+//        }
+//	}
+
 }
