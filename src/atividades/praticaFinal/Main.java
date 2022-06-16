@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) throws  IOException{
 		
-		int key=321;
+		int key=10;
 		GerenciadorBD bd = new GerenciadorBD();
 		
 		try {
