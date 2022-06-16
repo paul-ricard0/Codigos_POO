@@ -13,7 +13,7 @@ public class GerenciadorBD {
 	
 	private final String url = "jdbc:postgresql://localhost/praticaFinal";
 	private final String user = "postgres";
-	private final String password = "pauloegol23";
+	private final String password = "123456";
 	Connection conn = null;
 	PreparedStatement statement;
 	int id;
