@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) throws  IOException{
 		
-		int key=10;
+		int key=321;
 		GerenciadorBD bd = new GerenciadorBD();
 		
 		try {
@@ -41,7 +41,7 @@ public class Main {
 						break;
 					}
 					default:
-						throw new IllegalArgumentException("Unexpected value: " + key);
+						JOptionPane.showMessageDialog(null,"Unexpected value: " + key);
 				}
 			}while(key != 0);
 			bd.closeConn();
@@ -64,7 +64,7 @@ public class Main {
 				+ "<1> - ID\r\n"
 				+ "<2> - LOCAL\r\n"
 				+ "<3> - DATA\r\n"
-				+ "<4> - TITULO\r\n"
+				+ "<4> - NOME\r\n"
 				+ "<5> - OBSERVACAO\r\n"
 				+ "<6> - TIPO"));
 	}

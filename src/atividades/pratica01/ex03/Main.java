@@ -12,7 +12,7 @@ public class Main {
 		
 		paulo.avaliar(paulo.notaAV1, paulo.notaAV2);
 		
-		paulo.avaliarRecuperação(paulo.notaAV1, paulo.notaAV2, paulo.notaAE);
+		paulo.avaliarRecuperao(paulo.notaAV1, paulo.notaAV2, paulo.notaAE);
 		
 		paulo.DESAFIO(paulo.notaAE);
 	}
